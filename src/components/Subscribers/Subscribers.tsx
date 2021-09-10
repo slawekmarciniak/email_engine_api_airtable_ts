@@ -1,12 +1,14 @@
 import {FC, useState, useEffect} from 'react';
-import Person from './Person'
-import {getSubscribers} from '../api/api'
+import Person from './Person';
+import {getSubscribers} from '../api/api';
+import './style.css';
+
 
 interface SubscribersProps {
 }
 
 const Subscribers: FC<SubscribersProps> = () => {
-    const [allSubscribers, setAllSubscribers] = useState([])
+    const [allSubscribers, setAllSubscribers] = useState<any[]>([])
 
 
     useEffect(() => {
@@ -29,10 +31,11 @@ const Subscribers: FC<SubscribersProps> = () => {
             </tr>
             </thead>
             <tbody>
-            {allSubscribers && allSubscribers.map((subscriber) => (<Person subscriber={subscriber}/>))}
+          {allSubscribers.map((subscriber) => ( <Person key={subscriber.id} subscriber={subscriber}/>))}
             </tbody>
         </table>
-
+        <button>send mail to subscribers</button> 
+        <button>add subscriber</button>
         </div>
 );
     }
