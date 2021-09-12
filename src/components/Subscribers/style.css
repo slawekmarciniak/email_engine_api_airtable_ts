@@ -1,0 +1,15 @@
+.tableContainer {
+    width: 100%;
+
+}
+
+table {
+    border: 2px solid black;
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+table td {
+    text-align: center;
+}

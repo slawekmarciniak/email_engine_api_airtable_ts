@@ -1,6 +1,6 @@
 import {FC, useState, useEffect} from 'react';
 import Person from './Person';
-import {getSubscribers} from '../api/api';
+import {getSubscribers} from '../../api/api';
 import './style.css';
 
 
@@ -21,7 +21,7 @@ const Subscribers: FC<SubscribersProps> = () => {
       }, []);
 
     return (
-    <div key='kok' className="tableContainer">
+    <div className="tableContainer">
         <table>
             <thead>
             <tr>
@@ -34,8 +34,6 @@ const Subscribers: FC<SubscribersProps> = () => {
           {allSubscribers.map((subscriber) => ( <Person key={subscriber.id} subscriber={subscriber}/>))}
             </tbody>
         </table>
-        <button>send mail to subscribers</button> 
-        <button>add subscriber</button>
         </div>
 );
     }

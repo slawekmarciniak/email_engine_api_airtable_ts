@@ -1,0 +1,42 @@
+.navContainer {
+    background-color: #34495e;
+    width: 100%;
+}
+
+.navContainer nav {
+    width: 100%;
+}
+
+.navContainer ul {
+    display: flex;
+    width: 100%;
+    justify-content:space-around;
+    align-items: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    height: 30px;
+
+}
+
+.navContainer li {
+    text-decoration: none;
+    text-transform: uppercase;
+    display: block;
+    margin-left: 0;
+   
+}
+
+
+
+
+.navContainer a {
+    text-decoration: none;
+    color: white;
+    transition: 0.4s;
+}
+
+.navContainer a:hover {
+color: yellow;
+}
+
