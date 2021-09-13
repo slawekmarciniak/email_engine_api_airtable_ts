@@ -1,6 +1,9 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useForm } from 'react-hook-form';
 import { addSubscribers } from '../../api/api';
+import Input from '@material-ui/core/Input';
+import Paper from '@material-ui/core/Paper';
+import './styles.css'
 
 
 interface FormProps {
@@ -8,22 +11,41 @@ interface FormProps {
 }
  
 const Form: FC<FormProps> = () => {
-const { register, handleSubmit, formState: { errors } } = useForm();
+const { register, handleSubmit, formState: { errors }, reset } = useForm();
+const [isSendInfo, setIsSendInfo] = useState(false);
 
   const onSubmit = (data: object) => {
-    addSubscribers({...data, date: '2021-09-11',
+    if (!errors.name && !errors.email) {
+      addSubscribers({...data, date: '2021-09-11',
     })
-    console.log('data from form', data)}
+    reset()
+    setIsSendInfo(true)
+    setTimeout(() => {
+      setIsSendInfo(false)
+    }, 1500)
 
-
-    // console.log(errors);
-    return ( 
-        <form onSubmit={handleSubmit(onSubmit)}>
-        <input type="text" placeholder="name" {...register("name", {required: true, min: 2})} />
-        <input type="email" placeholder="email" {...register("email", {min: 3})} />
-        <input type="submit" />
-      </form>
-     );
+  }
+    }
+    return (
+<>
+    {!isSendInfo && <Paper className="formContainer">
+    <form  onSubmit={handleSubmit(onSubmit)}>
+    <Input className="formInput" type="text" placeholder="name" inputProps={{ 'aria-label': 'description' }}
+     {...register("name", {
+      required: "name is required", 
+      minLength: {value: 2, message: "field is to short"}
+      })} />
+     {errors.name && <span className="errorMessage">{errors.name.message}</span> }
+    <Input className="formInput" type="text" placeholder="email" inputProps={{ 'aria-label': 'description' }} {...register("email", {
+      required: "email is required", 
+      minLength: {value: 2, message: "field is to short"}})} />
+      {errors.email && <span className="errorMessage">{errors.email.message}</span> }
+    <input className="formInput button" type="submit" value="send" />
+  </form>
+  </Paper>}
+  {isSendInfo && <p className="confirmation">user is added</p>}
+</>
+);
 }
  
 export default Form;

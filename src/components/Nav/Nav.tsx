@@ -14,7 +14,7 @@ const Nav: FC<NavProps> = () => {
 <nav>
             <ul>
                 <li>
-                    <NavLink to="/">Subscribers</NavLink>
+                    <NavLink exact to="/">Subscribers</NavLink>
                 </li>
                 <li>
                     <NavLink to="/add">Add Subscriber</NavLink>

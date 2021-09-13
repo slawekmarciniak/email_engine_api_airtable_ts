@@ -15,7 +15,7 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    height: 30px;
+    height: 50px;
 
 }
 
@@ -27,16 +27,17 @@
    
 }
 
-
-
-
 .navContainer a {
     text-decoration: none;
     color: white;
     transition: 0.4s;
+    padding: 10px;
 }
 
 .navContainer a:hover {
 color: yellow;
 }
 
+.navContainer a.active {
+    color: #f0932b;
+}

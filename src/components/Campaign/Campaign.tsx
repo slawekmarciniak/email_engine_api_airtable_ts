@@ -1,8 +1,21 @@
 
+import { CircularProgress, TableContainer, Paper, Table, TableHead, TableRow, TableBody, TableCell, withStyles } from '@material-ui/core';
+
 import { FC, useEffect, useState } from 'react';
 import { getCampaigns } from '../../api/api';
 import CampaignRecord from './CampaignRecord'
 
+
+
+const StyledTableCell = withStyles((theme) => ({
+    head: {
+      backgroundColor: '#eb4d4b',
+      color: theme.palette.common.white,
+    },
+    body: {
+      fontSize: 14,
+    },
+  }))(TableCell);
 
 
 interface CampaignProps {
@@ -11,6 +24,7 @@ interface CampaignProps {
  
 const Campaign: FC<CampaignProps> = () => {
     const [allCampaigns, setAllCampaigns] = useState<any[]>([])
+    const [isDataSet, setIsDataSet] = useState(false)
 
 
     useEffect(() => {
@@ -18,31 +32,33 @@ const Campaign: FC<CampaignProps> = () => {
             const data = await getCampaigns()
            setAllCampaigns(data);
             console.log(data);
+            setTimeout(()=> setIsDataSet(true), 1500)
         }
         getData()
       }, []);
 
     return (
-    <div className="tableContainer">
-        <table>
-            <thead>
-            <tr>
-                <th>name</th>
-                <th>email</th>
-                <th>start subscription</th>
-                <th>status</th>
 
-            </tr>
-            </thead>
-            <tbody>
-          {allCampaigns.map((campaign) => ( <CampaignRecord key={campaign.id} campaign={campaign}/>))}
-            </tbody>
-        </table>
-        </div>
+        <>
+        {!isDataSet && <CircularProgress style={{marginTop:50, color: '#eb4d4b'}} /> } 
+        {isDataSet && 
+        <TableContainer style={{width: '80%', margin: '50px auto 0 auto'}} component={Paper}>
+            <Table  aria-label="customized table">
+            <TableHead>
+            <TableRow>
+            <StyledTableCell style={{textTransform: 'uppercase'}} align="center">name</StyledTableCell>
+            <StyledTableCell style={{textTransform: 'uppercase'}} align="center">email</StyledTableCell>
+            <StyledTableCell style={{textTransform: 'uppercase'}} align="center">start subscription</StyledTableCell>
+            <StyledTableCell style={{textTransform: 'uppercase'}} align="center">statu subscription</StyledTableCell>
+            </TableRow>
+            </TableHead>
+            <TableBody>
+            {allCampaigns.map((campaign) => ( <CampaignRecord key={campaign.id} campaign={campaign}/>))}
+            </TableBody>
+            </Table>
+            </TableContainer> }
+            </>
 );
-
-
-
     }
  
 export default Campaign;

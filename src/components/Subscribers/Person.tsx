@@ -1,5 +1,25 @@
+import { withStyles, TableRow, TableCell } from '@material-ui/core';
 import {FC} from 'react';
 
+
+
+const StyledTableCell = withStyles((theme) => ({
+    head: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    body: {
+      fontSize: 14,
+    },
+  }))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+    root: {
+      '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.action.hover,
+      },
+    },
+  }))(TableRow);
 interface PersonProps {
     subscriber: any
 }
@@ -8,11 +28,11 @@ const Person: FC<PersonProps> = ({subscriber}) => {
 const {name, email, date} = subscriber.fields
 
     return (
-    <tr>
-    <td>{name}</td>
-    <td>{email}</td>
-    <td>{date}</td>
-    </tr>
+    <StyledTableRow>
+    <StyledTableCell style={{textTransform: "capitalize"}} component="td">{name}</StyledTableCell>
+    <StyledTableCell component="td">{email}</StyledTableCell>
+    <StyledTableCell component="td">{date}</StyledTableCell>
+    </StyledTableRow>
      );
 }
  
