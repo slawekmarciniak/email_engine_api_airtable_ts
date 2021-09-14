@@ -57,12 +57,12 @@ const Email: FC<EmailProps> = () => {
               placeholder="subject"
               inputProps={{ "aria-label": "description" }}
               {...register("subject", {
-                required: "name is required",
+                required: "subject is required",
                 minLength: { value: 2, message: "field is to short" },
               })}
             />
-            {errors.name && (
-              <span className="errorMessage">{errors.name.message}</span>
+            {errors.subject && (
+              <span className="errorMessage">{errors.subject.message}</span>
             )}
             <TextField
               className="formInput"

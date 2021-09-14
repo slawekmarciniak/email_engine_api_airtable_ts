@@ -34,7 +34,7 @@ const Campaign: FC<CampaignProps> = () => {
       const data = await getCampaigns();
       setAllCampaigns(data);
       console.log(data);
-      setTimeout(() => setIsDataSet(true), 1000);
+      setTimeout(() => setIsDataSet(true), 500);
     };
     getData();
   }, []);

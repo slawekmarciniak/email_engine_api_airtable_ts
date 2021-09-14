@@ -33,7 +33,7 @@ const Subscribers: FC<SubscribersProps> = () => {
       const data = await getSubscribers();
       setAllSubscribers(data);
       console.log(data);
-      setTimeout(() => setIsDataSet(true), 1000);
+      setTimeout(() => setIsDataSet(true), 500);
     };
     getData();
   }, []);
