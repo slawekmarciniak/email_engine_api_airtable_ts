@@ -9,7 +9,8 @@ import Campaign from "./components/Campaign";
 import { Button, Paper, TextField } from "@material-ui/core";
 import "./App.css";
 
-const enterPassword = "admin";
+const enterPassword: string = "admin";
+
 function App() {
   const [isLogged, setIsLogged] = useState(false);
   const [password, setPassword] = useState("");
@@ -19,7 +20,8 @@ function App() {
       setIsLogged(true);
     } else alert("admin! :)");
   };
-  const handleChange = (e: any) => setPassword(e.target.value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setPassword(e.target.value);
 
   return (
     <Router>
