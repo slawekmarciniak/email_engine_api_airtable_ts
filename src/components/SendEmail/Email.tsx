@@ -2,7 +2,7 @@ import { Input, Paper, TextField } from "@material-ui/core";
 import { FC, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { addCampaign, getSubscribers } from "../../api/api";
-// import { emailMessage } from "../../mailgun/app";
+import { emailMessage } from "../../mailgun/app";
 
 interface EmailProps {}
 
@@ -37,15 +37,14 @@ const Email: FC<EmailProps> = () => {
 
   const onSubmit = (data: any) => {
     console.log("send");
-    // allSubscribers.forEach((subscriber) => {
-    //   emailMessage(subscriber.name, subscriber.email, data.email);
-    // });
+    allSubscribers.forEach((subscriber) => {
+      emailMessage(subscriber.name, subscriber.email, data.email);
+    });
 
     if (!errors.name && !errors.email) {
       const date = new Date().toISOString().slice(0, 10);
-      const choosenStatus = isSaveButton ? "draft" : "send";
-      console.log("choosenStatus", choosenStatus);
-      addCampaign({ ...data, created: date, status: choosenStatus });
+      const messageStatus = isSaveButton ? "draft" : "send";
+      addCampaign({ ...data, created: date, status: messageStatus });
       reset();
       setIsSendInfo(true);
       setTimeout(() => {

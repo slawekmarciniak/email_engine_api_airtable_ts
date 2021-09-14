@@ -1,15 +1,15 @@
-const {
-  REACT_APP_DB_subscribers_ID,
-  REACT_APP_DB_campaigns_ID,
-  REACT_APP_API_KEY,
-} = process.env;
+// const {
+//   REACT_APP_DB_subscribers_ID,
+//   REACT_APP_DB_campaigns_ID,
+//   REACT_APP_API_KEY,
+// } = process.env;
 
 const baseUrl: string = "https://api.airtable.com/v0";
 const apiConfig = {
   subscribers: `${baseUrl}/appiitjRQk15Yc6Va/Table%201`,
   campaigns: `${baseUrl}/app5OxZIkcgEJUvn0/Table%201`,
 };
-const apiKey: any = REACT_APP_API_KEY;
+const apiKey: any = "keyyww0OQZOBnRbMM";
 const requestConfig = {
   headers: {
     Authorization: `Bearer ${apiKey}`,
