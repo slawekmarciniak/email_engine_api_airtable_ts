@@ -1,9 +1,15 @@
+const {
+  REACT_APP_DB_subscribers_ID,
+  REACT_APP_DB_campaigns_ID,
+  REACT_APP_API_KEY,
+} = process.env;
+
 const baseUrl: string = "https://api.airtable.com/v0";
 const apiConfig = {
   subscribers: `${baseUrl}/appiitjRQk15Yc6Va/Table%201`,
   campaigns: `${baseUrl}/app5OxZIkcgEJUvn0/Table%201`,
 };
-const apiKey: string = "keyyww0OQZOBnRbMM";
+const apiKey: any = REACT_APP_API_KEY;
 const requestConfig = {
   headers: {
     Authorization: `Bearer ${apiKey}`,
@@ -57,6 +63,18 @@ export const addCampaign = async (data: object) => {
     },
 
     body: JSON.stringify({ fields: { ...data } }),
+  });
+
+  return console.log(response.json());
+};
+
+export const deleteCampaign = async (id: string) => {
+  const response = await fetch(`${apiConfig.campaigns}/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
   });
 
   return console.log(response.json());

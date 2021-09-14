@@ -2,7 +2,7 @@ import { Input, Paper, TextField } from "@material-ui/core";
 import { FC, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { addCampaign, getSubscribers } from "../../api/api";
-import { emailMessage } from "../../mailgun/app";
+// import { emailMessage } from "../../mailgun/app";
 
 interface EmailProps {}
 

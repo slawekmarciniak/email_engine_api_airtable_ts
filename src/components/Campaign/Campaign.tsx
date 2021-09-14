@@ -10,7 +10,7 @@ import {
   withStyles,
 } from "@material-ui/core";
 import { FC, useEffect, useState } from "react";
-import { getCampaigns } from "../../api/api";
+import { getCampaigns, deleteCampaign } from "../../api/api";
 import CampaignRecord from "./CampaignRecord";
 
 import "./styles.css";
@@ -41,6 +41,7 @@ const Campaign: FC<CampaignProps> = () => {
   }, []);
 
   const handleDeleteCampaign = (id: any) => {
+    deleteCampaign(id);
     const newAllCampaigns = allCampaigns.filter((e) => e.id !== id);
     setAllCampaigns(newAllCampaigns);
   };
