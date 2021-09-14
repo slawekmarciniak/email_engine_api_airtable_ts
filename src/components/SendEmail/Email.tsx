@@ -15,6 +15,7 @@ const Email: FC<EmailProps> = () => {
   } = useForm();
   const [allSubscribers, setAllSubscribers] = useState<any[]>([]);
   const [isSendInfo, setIsSendInfo] = useState(false);
+  const [isSaveButton, setSaveButton] = useState(false);
 
   useEffect(() => {
     setAllSubscribers([]);
@@ -30,14 +31,21 @@ const Email: FC<EmailProps> = () => {
     getData();
   }, []);
 
-  const onSubmit = (data: object) => {
-    allSubscribers.forEach((subscriber) => {
-      emailMessage(subscriber.name, subscriber.email);
-    });
+  const onSave = () => {
+    setSaveButton(true);
+  };
+
+  const onSubmit = (data: any) => {
+    console.log("send");
+    // allSubscribers.forEach((subscriber) => {
+    //   emailMessage(subscriber.name, subscriber.email, data.email);
+    // });
 
     if (!errors.name && !errors.email) {
       const date = new Date().toISOString().slice(0, 10);
-      addCampaign({ ...data, created: date, status: "send" });
+      const choosenStatus = isSaveButton ? "draft" : "send";
+      console.log("choosenStatus", choosenStatus);
+      addCampaign({ ...data, created: date, status: choosenStatus });
       reset();
       setIsSendInfo(true);
       setTimeout(() => {
@@ -81,6 +89,9 @@ const Email: FC<EmailProps> = () => {
             )}
 
             <input className="formInput button" type="submit" value="send" />
+            <button className="formInput button" onClick={onSave}>
+              save
+            </button>
           </form>
         </Paper>
       )}

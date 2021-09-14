@@ -1,0 +1,13 @@
+.deleteBtn {
+border-radius: 50%;
+border: 1px dotted #ff7979;
+line-height: 20px;
+padding-top: 5px;
+cursor: pointer;
+transition: 0.4s;
+}
+
+.deleteBtn:hover {
+    border: 1px solid #ff7979;
+    background-color: white;
+}

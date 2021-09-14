@@ -1,26 +1,19 @@
-
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Nav from "./components/Nav";
 import Form from "./components/Form";
-import Subscribers from './components/Subscribers';
-import Email from "./components/Email";
+import Subscribers from "./components/Subscribers";
+import Email from "./components/SendEmail";
 import Campaign from "./components/Campaign";
 
-import './App.css';
-
+import "./App.css";
 
 function App() {
   return (
     <Router>
-      
       <div className="App">
-      <Nav/>
-      <Switch>
+        <Nav />
+        <Switch>
           <Route path="/add">
             <Form />
           </Route>
@@ -34,10 +27,8 @@ function App() {
             <Subscribers />
           </Route>
         </Switch>
-
       </div>
     </Router>
-    
   );
 }
 

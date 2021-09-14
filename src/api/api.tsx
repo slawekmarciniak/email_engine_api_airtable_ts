@@ -49,8 +49,6 @@ export const addSubscribers = async (data: object) => {
 };
 
 export const addCampaign = async (data: object) => {
-  console.log("wysyłka", data);
-  console.log(JSON.stringify({ fields: { ...data } }));
   const response = await fetch(apiConfig.campaigns, {
     method: "POST",
     headers: {
