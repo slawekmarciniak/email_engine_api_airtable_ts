@@ -17,7 +17,8 @@
 
 .formInput.button {
     margin-top: 30px;
-    width: 50%;
+    display: inline-block;
+    width: 40%;
     height: 40px;
     background-color: #95afc0;
     border: 1px solid gray;
@@ -29,6 +30,7 @@
     color: rgba(83, 83, 83, 0.705);
     letter-spacing: 1.5px;
     font-weight: bold;
+    margin-left: 15px;
 }
 .button:hover {
     background-color: #6ab04c;
