@@ -25,12 +25,12 @@ interface CampaignRecordProps {
 }
  
 const CampaignRecord: FC<CampaignRecordProps> = ({campaign}) => {
-    const {subject, content, created, status } = campaign.fields
+    const {subject, email, created, status } = campaign.fields
     return ( 
 
 <StyledTableRow>
     <StyledTableCell style={{textTransform: "capitalize"}} component="td">{subject}</StyledTableCell>
-    <StyledTableCell component="td">{content}</StyledTableCell>
+    <StyledTableCell component="td">{email}</StyledTableCell>
     <StyledTableCell component="td">{created}</StyledTableCell>
     <StyledTableCell component="td">{status}</StyledTableCell>
     </StyledTableRow>

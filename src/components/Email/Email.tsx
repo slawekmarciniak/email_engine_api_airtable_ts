@@ -1,60 +1,92 @@
-import { Paper, Input, TextField } from '@material-ui/core';
-import {FC, useState} from 'react'
-import { useForm } from 'react-hook-form';
-import {addCampaign} from '../../api/api'
+import { Input, Paper, TextField } from "@material-ui/core";
+import { FC, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { addCampaign, getSubscribers } from "../../api/api";
+import { emailMessage } from "../../mailgun/app";
 
-interface EmailProps {
-    
-}
- 
+interface EmailProps {}
+
 const Email: FC<EmailProps> = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+  const [allSubscribers, setAllSubscribers] = useState<any[]>([]);
+  const [isSendInfo, setIsSendInfo] = useState(false);
 
-    const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    const [isSendInfo, setIsSendInfo] = useState(false);
-    
-      const onSubmit = (data: object) => {
-        if (!errors.name && !errors.email) {
-          addCampaign({...data, date: '2021-09-11', status: 'send',
-        })
-        reset()
-        setIsSendInfo(true)
-        setTimeout(() => {
-          setIsSendInfo(false)
-        }, 1500)
-    
-      }
-      console.log('text area', data);
-        }
+  useEffect(() => {
+    setAllSubscribers([]);
+    const getData = async () => {
+      const data = await getSubscribers();
+      data.map((e: any) => {
+        return setAllSubscribers((prev) => [
+          ...prev,
+          { name: e.fields.name, email: e.fields.email },
+        ]);
+      });
+    };
+    getData();
+  }, []);
 
+  const onSubmit = (data: object) => {
+    allSubscribers.forEach((subscriber) => {
+      emailMessage(subscriber.name, subscriber.email);
+    });
 
+    if (!errors.name && !errors.email) {
+      const date = new Date().toISOString().slice(0, 10);
+      addCampaign({ ...data, created: date, status: "send" });
+      reset();
+      setIsSendInfo(true);
+      setTimeout(() => {
+        setIsSendInfo(false);
+      }, 1500);
+    }
+  };
 
-    return ( 
-       
-<Paper className="formContainer">
-    <form  onSubmit={handleSubmit(onSubmit)}>
-    <Input className="formInput" type="text" placeholder="subject" inputProps={{ 'aria-label': 'description' }}
-     {...register("subject", {
-      required: "name is required", 
-      minLength: {value: 2, message: "field is to short"}
-      })} />
-     {errors.name && <span className="errorMessage">{errors.name.message}</span> }
-     <TextField
-        className="formInput"
-          id="standard-multiline-static"
-          label="email text"
-          multiline
-          rows={10}
-          {...register("email", {
-            required: "email is required", 
-            minLength: {value: 2, message: "field is to short"}})} />
+  return (
+    <>
+      {!isSendInfo && (
+        <Paper className="formContainer">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Input
+              className="formInput"
+              type="text"
+              placeholder="subject"
+              inputProps={{ "aria-label": "description" }}
+              {...register("subject", {
+                required: "name is required",
+                minLength: { value: 2, message: "field is to short" },
+              })}
+            />
+            {errors.name && (
+              <span className="errorMessage">{errors.name.message}</span>
+            )}
+            <TextField
+              className="formInput"
+              id="standard-multiline-static"
+              label="email text"
+              multiline
+              rows={10}
+              {...register("email", {
+                required: "email is required",
+                minLength: { value: 2, message: "field is to short" },
+              })}
+            />
 
-      {errors.email && <span className="errorMessage">{errors.email.message}</span> }
+            {errors.email && (
+              <span className="errorMessage">{errors.email.message}</span>
+            )}
 
-    <input className="formInput button" type="submit" value="send" />
-  </form>
-  </Paper>
+            <input className="formInput button" type="submit" value="send" />
+          </form>
+        </Paper>
+      )}
+      {isSendInfo && <p className="confirmation">email is send</p>}
+    </>
+  );
+};
 
-    )
-}
- 
 export default Email;
