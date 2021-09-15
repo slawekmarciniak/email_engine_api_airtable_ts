@@ -1,15 +1,21 @@
 import { Input, Paper, TextField } from "@material-ui/core";
 import { FC, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router";
 import { addCampaign, getSubscribers } from "../../api/api";
 // import { emailMessage } from "../../mailgun/app";
 
 interface EmailProps {
   subject: string;
   text: string;
+  setEmailDetails: any;
 }
 
-const CreateCampaigne: FC<EmailProps> = ({ subject, text }) => {
+const CreateCampaigne: FC<EmailProps> = ({
+  subject,
+  text,
+  setEmailDetails,
+}) => {
   const {
     register,
     handleSubmit,
@@ -19,6 +25,7 @@ const CreateCampaigne: FC<EmailProps> = ({ subject, text }) => {
   const [allSubscribers, setAllSubscribers] = useState<any[]>([]);
   const [isSendInfo, setIsSendInfo] = useState(false);
   const [isSaveButton, setSaveButton] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     setAllSubscribers([]);
@@ -53,8 +60,10 @@ const CreateCampaigne: FC<EmailProps> = ({ subject, text }) => {
       addCampaign({ ...data, created: date, status: messageStatus });
       reset();
       setIsSendInfo(true);
+      setEmailDetails("", "");
       setTimeout(() => {
         setIsSendInfo(false);
+        history.push("/campaign");
       }, 1500);
     }
   };
@@ -84,7 +93,8 @@ const CreateCampaigne: FC<EmailProps> = ({ subject, text }) => {
               className="formInput"
               defaultValue={text}
               id="standard-multiline-static"
-              label="email text"
+              placeholder="email text"
+              // label="email text"
               multiline
               rows={10}
               {...register("email", {

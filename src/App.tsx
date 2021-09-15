@@ -57,7 +57,11 @@ function App() {
                 <Campaign setEmailDetails={setEmailDetails} />
               </Route>
               <Route path="/email">
-                <CreateCampaigne subject={mailSubject} text={mailText} />
+                <CreateCampaigne
+                  subject={mailSubject}
+                  text={mailText}
+                  setEmailDetails={setEmailDetails}
+                />
               </Route>
               <Route path="/">
                 <Subscribers />
