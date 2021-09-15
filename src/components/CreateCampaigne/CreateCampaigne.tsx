@@ -94,7 +94,6 @@ const CreateCampaigne: FC<EmailProps> = ({
               defaultValue={text}
               id="standard-multiline-static"
               placeholder="email text"
-              // label="email text"
               multiline
               rows={10}
               {...register("email", {
