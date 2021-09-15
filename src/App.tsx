@@ -12,7 +12,7 @@ import "./App.css";
 const enterPassword: string = "admin";
 
 function App() {
-  const [isLogged, setIsLogged] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
   const [password, setPassword] = useState("");
   const [mailSubject, setMailSubject] = useState("");
   const [mailText, setMailText] = useState("");
