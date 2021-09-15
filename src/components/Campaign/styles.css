@@ -5,6 +5,7 @@ line-height: 20px;
 padding-top: 5px;
 cursor: pointer;
 transition: 0.4s;
+margin-top: 5px;
 }
 
 .deleteBtn:hover {

@@ -25,9 +25,11 @@ const StyledTableCell = withStyles((theme) => ({
   },
 }))(TableCell);
 
-interface CampaignProps {}
+interface CampaignProps {
+  setEmailDetails: any;
+}
 
-const Campaign: FC<CampaignProps> = () => {
+const Campaign: FC<CampaignProps> = ({ setEmailDetails }) => {
   const [allCampaigns, setAllCampaigns] = useState<any[]>([]);
   const [isDataSet, setIsDataSet] = useState(false);
 
@@ -41,6 +43,7 @@ const Campaign: FC<CampaignProps> = () => {
   }, []);
 
   const handleDeleteCampaign = (id: any) => {
+    console.log("delete from edit");
     deleteCampaign(id);
     const newAllCampaigns = allCampaigns.filter((e) => e.id !== id);
     setAllCampaigns(newAllCampaigns);
@@ -94,6 +97,7 @@ const Campaign: FC<CampaignProps> = () => {
             <TableBody>
               {allCampaigns.map((campaign) => (
                 <CampaignRecord
+                  setEmailDetails={setEmailDetails}
                   key={campaign.id}
                   campaign={campaign}
                   id={campaign.id}

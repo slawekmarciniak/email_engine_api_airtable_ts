@@ -7,7 +7,7 @@ import "./styles.css";
 
 interface FormProps {}
 
-const Form: FC<FormProps> = () => {
+const AddSubscriber: FC<FormProps> = () => {
   const {
     register,
     handleSubmit,
@@ -67,4 +67,4 @@ const Form: FC<FormProps> = () => {
   );
 };
 
-export default Form;
+export default AddSubscriber;

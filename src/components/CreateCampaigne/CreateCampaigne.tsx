@@ -4,9 +4,12 @@ import { useForm } from "react-hook-form";
 import { addCampaign, getSubscribers } from "../../api/api";
 // import { emailMessage } from "../../mailgun/app";
 
-interface EmailProps {}
+interface EmailProps {
+  subject: string;
+  text: string;
+}
 
-const Email: FC<EmailProps> = () => {
+const CreateCampaigne: FC<EmailProps> = ({ subject, text }) => {
   const {
     register,
     handleSubmit,
@@ -56,6 +59,8 @@ const Email: FC<EmailProps> = () => {
     }
   };
 
+  // setValue([{ subject: subject }, { email: text }]);
+
   return (
     <>
       {!isSendInfo && (
@@ -63,6 +68,7 @@ const Email: FC<EmailProps> = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <Input
               className="formInput"
+              defaultValue={subject}
               type="text"
               placeholder="subject"
               inputProps={{ "aria-label": "description" }}
@@ -76,6 +82,7 @@ const Email: FC<EmailProps> = () => {
             )}
             <TextField
               className="formInput"
+              defaultValue={text}
               id="standard-multiline-static"
               label="email text"
               multiline
@@ -102,4 +109,4 @@ const Email: FC<EmailProps> = () => {
   );
 };
 
-export default Email;
+export default CreateCampaigne;

@@ -2,9 +2,9 @@ import { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Nav from "./components/Nav";
-import Form from "./components/Form";
+import AddSubscriber from "./components/AddSubscriber";
 import Subscribers from "./components/Subscribers";
-import Email from "./components/SendEmail";
+import CreateCampaigne from "./components/CreateCampaigne";
 import Campaign from "./components/Campaign";
 import { Button, Paper, TextField } from "@material-ui/core";
 import "./App.css";
@@ -12,8 +12,15 @@ import "./App.css";
 const enterPassword: string = "admin";
 
 function App() {
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState(true);
   const [password, setPassword] = useState("");
+  const [mailSubject, setMailSubject] = useState("");
+  const [mailText, setMailText] = useState("");
+
+  const setEmailDetails = (subject: any, text: any) => {
+    setMailSubject(subject);
+    setMailText(text);
+  };
 
   const handleClick = () => {
     if (password === enterPassword) {
@@ -44,13 +51,13 @@ function App() {
             <Nav />
             <Switch>
               <Route path="/add">
-                <Form />
+                <AddSubscriber />
               </Route>
               <Route path="/campaign">
-                <Campaign />
+                <Campaign setEmailDetails={setEmailDetails} />
               </Route>
               <Route path="/email">
-                <Email />
+                <CreateCampaigne subject={mailSubject} text={mailText} />
               </Route>
               <Route path="/">
                 <Subscribers />
