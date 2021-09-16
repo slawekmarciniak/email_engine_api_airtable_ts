@@ -23,10 +23,17 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 interface CampaignRecordProps {
-  campaign: any;
-  handleDelete: any;
-  id: any;
-  setEmailDetails: any;
+  campaign: {
+    fields: {
+      status: string;
+      created: string;
+      subject: string;
+      email: string;
+    };
+  };
+  handleDelete: (id: string) => void;
+  id: string;
+  setEmailDetails: (subject: string, text: string) => void;
 }
 
 const CampaignRecord: FC<CampaignRecordProps> = ({
@@ -38,8 +45,9 @@ const CampaignRecord: FC<CampaignRecordProps> = ({
   const history = useHistory();
   const { subject, email, created, status } = campaign.fields;
 
-  const handleEdit = (id: any) => {
-    console.log("edit", id);
+  console.log("campaign", campaign);
+
+  const handleEdit = (id: string) => {
     setEmailDetails(subject, email);
     handleDelete(id);
     history.push("/email");

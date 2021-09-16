@@ -8,7 +8,7 @@ import { addCampaign, getSubscribers } from "../../api/api";
 interface EmailProps {
   subject: string;
   text: string;
-  setEmailDetails: any;
+  setEmailDetails: (subject: string, text: string) => void;
 }
 
 const CreateCampaigne: FC<EmailProps> = ({
@@ -46,8 +46,6 @@ const CreateCampaigne: FC<EmailProps> = ({
   };
 
   const onSubmit = (data: object) => {
-    console.log("send");
-
     // Mailgun server is temporary disabled
 
     // allSubscribers.forEach((subscriber) => {

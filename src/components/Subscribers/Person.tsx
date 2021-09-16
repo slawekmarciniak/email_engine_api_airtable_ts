@@ -19,7 +19,13 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 interface PersonProps {
-  subscriber: any;
+  subscriber: {
+    fields: {
+      name: string;
+      email: string;
+      date: string;
+    };
+  };
 }
 
 const Person: FC<PersonProps> = ({ subscriber }) => {

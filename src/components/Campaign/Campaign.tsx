@@ -26,7 +26,7 @@ const StyledTableCell = withStyles((theme) => ({
 }))(TableCell);
 
 interface CampaignProps {
-  setEmailDetails: any;
+  setEmailDetails: (subject: string, text: string) => void;
 }
 
 const Campaign: FC<CampaignProps> = ({ setEmailDetails }) => {
@@ -42,7 +42,7 @@ const Campaign: FC<CampaignProps> = ({ setEmailDetails }) => {
     getData();
   }, []);
 
-  const handleDeleteCampaign = (id: any) => {
+  const handleDeleteCampaign = (id: string) => {
     console.log("delete from edit");
     deleteCampaign(id);
     const newAllCampaigns = allCampaigns.filter((e) => e.id !== id);

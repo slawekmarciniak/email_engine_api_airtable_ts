@@ -17,7 +17,7 @@ function App() {
   const [mailSubject, setMailSubject] = useState("");
   const [mailText, setMailText] = useState("");
 
-  const setEmailDetails = (subject: any, text: any) => {
+  const setEmailDetails = (subject: string, text: string) => {
     setMailSubject(subject);
     setMailText(text);
   };

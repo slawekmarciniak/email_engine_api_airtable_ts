@@ -26,7 +26,7 @@ interface SubscribersProps {}
 
 const Subscribers: FC<SubscribersProps> = () => {
   const [allSubscribers, setAllSubscribers] = useState<any[]>([]);
-  const [isDataSet, setIsDataSet] = useState(false);
+  const [isDataSet, setIsDataSet] = useState<boolean>(false);
 
   useEffect(() => {
     const getData = async () => {
