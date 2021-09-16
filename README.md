@@ -1,4 +1,4 @@
-Email engin with interface.
+Email engine with interface.
 
 Technologies:
 
@@ -6,18 +6,21 @@ Technologies:
 - [x] Database: airtable
 - [x] Fetch
 - [x] Mailgun
+- [x] Material-UI & CSS
 
-With this app is possible to add subscribers to airtable database.
+With this app is possible to add subscribers and campaigns to airtable databases.
+
+SUBSCRIBERS is element with all users, and is connected with database.
 
 CAMPAIGNS is second working database, it allows to store all send campaigns and drafts.
 
-Create campaign is place for sending email. It is connect with mailgun.
+Create campaign is place for sending email. It is connected with mailgun - (transactional email api for developers https://www.mailgun.com/)
 
 Every mail is send to all subscribers and then is stored in campaign database as send or draft.
 
 Every draft can be deleted or edit and send.
 
-Mailgun engin is disabled (commented) for this task. Needs to change subscription plan.
+Mailgun engine is disabled (commented) for this task (basic subscription plan).
 
 But all code is inside mailgun folder, is tested and its ready to use in my future projects.
 
