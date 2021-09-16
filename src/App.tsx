@@ -12,10 +12,10 @@ import "./App.css";
 const enterPassword: string = "admin";
 
 function App() {
-  const [isLogged, setIsLogged] = useState(false);
-  const [password, setPassword] = useState("");
-  const [mailSubject, setMailSubject] = useState("");
-  const [mailText, setMailText] = useState("");
+  const [isLogged, setIsLogged] = useState<boolean>(false);
+  const [password, setPassword] = useState<string>("");
+  const [mailSubject, setMailSubject] = useState<string>("");
+  const [mailText, setMailText] = useState<string>("");
 
   const setEmailDetails = (subject: string, text: string) => {
     setMailSubject(subject);

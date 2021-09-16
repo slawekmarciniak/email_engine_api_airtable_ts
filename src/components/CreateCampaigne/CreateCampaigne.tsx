@@ -31,7 +31,14 @@ const CreateCampaigne: FC<EmailProps> = ({
     setAllSubscribers([]);
     const getData = async () => {
       const data = await getSubscribers();
-      data.map((e: any) => {
+      interface elementValue {
+        fields: {
+          name: string;
+          email: string;
+        };
+      }
+
+      data.map((e: elementValue) => {
         return setAllSubscribers((prev) => [
           ...prev,
           { name: e.fields.name, email: e.fields.email },
