@@ -1,5 +1,7 @@
 Email engine with interface.
 
+[click & check codesandbox](https://codesandbox.io/s/github/slawekmarciniak/email_engine_api_airtable_ts_redux)
+
 Technologies:
 
 - [x] React, Typescript, JavaScript
@@ -23,5 +25,3 @@ Every draft can be deleted or edit and send.
 Mailgun engine is disabled (commented) for this task (basic subscription plan).
 
 But all code is inside mailgun folder, is tested and its ready to use in my future projects.
-
-[click & check codesandbox](https://codesandbox.io/s/github/slawekmarciniak/email_engine_api_airtable_ts_redux)
