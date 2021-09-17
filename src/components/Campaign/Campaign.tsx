@@ -10,8 +10,8 @@ import {
   withStyles,
 } from "@material-ui/core";
 import { FC, useEffect, useState } from "react";
-import { getAirtableData } from "../../api/apiAxios";
-import { deleteCampaign } from "../../api/api";
+import { getAirtableData, deleteCampaigne } from "../../api/apiAxios";
+
 import CampaignRecord from "./CampaignRecord";
 
 import "./styles.css";
@@ -44,8 +44,7 @@ const Campaign: FC<CampaignProps> = ({ setEmailDetails }) => {
   }, []);
 
   const handleDeleteCampaign = (id: string) => {
-    console.log("delete from edit");
-    deleteCampaign(id);
+    deleteCampaigne(id);
     const newAllCampaigns = allCampaigns.filter((e) => e.id !== id);
     setAllCampaigns(newAllCampaigns);
   };

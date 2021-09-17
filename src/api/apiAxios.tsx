@@ -41,14 +41,12 @@ export const addToAirtableDb = async (data: object, db: string) => {
     .catch((error) => console.log(error));
 };
 
-export const deleteCampaign = async (id: string) => {
-  const response = await fetch(`${apiConfig.campaigns}/${id}`, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-  });
-
-  return console.log(response.json());
+export const deleteCampaigne = async (id: string) => {
+  axios
+    .delete(`${apiConfig.campaigns}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+      },
+    })
+    .then((response) => console.log(response));
 };
