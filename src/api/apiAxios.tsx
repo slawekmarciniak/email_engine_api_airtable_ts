@@ -1,7 +1,6 @@
 // in progress
 
 import axios from "axios";
-import { url } from "inspector";
 
 // const {
 //   REACT_APP_DB_subscribers_ID,
@@ -29,38 +28,27 @@ export const getAirtableData = async (db: string = "subscribers") => {
     .catch((err) => console.log(err));
 };
 
-// export const addSubscribers = async (data: object) => {
-//   const response = await fetch(apiConfig.subscribers, {
-//     method: "POST",
-//     headers: {
-//       Authorization: `Bearer ${apiKey}`,
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({ fields: { ...data, Status: "ok" } }),
-//   });
-//   return console.log(response.json());
-// };
+export const addToAirtableDb = async (data: object, db: string) => {
+  const db_url =
+    db === "subscribers" ? apiConfig.subscribers : apiConfig.campaigns;
+  axios
+    .post(
+      db_url,
+      { fields: { ...data } },
+      { headers: { Authorization: `Bearer ${apiKey}` } }
+    )
+    .then((response) => console.log(response.data))
+    .catch((error) => console.log(error));
+};
 
-// export const addCampaign = async (data: object) => {
-//   const response = await fetch(apiConfig.campaigns, {
-//     method: "POST",
-//     headers: {
-//       Authorization: `Bearer ${apiKey}`,
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({ fields: { ...data } }),
-//   });
-//   return console.log(response.json());
-// };
+export const deleteCampaign = async (id: string) => {
+  const response = await fetch(`${apiConfig.campaigns}/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+  });
 
-// export const deleteCampaign = async (id: string) => {
-//   const response = await fetch(`${apiConfig.campaigns}/${id}`, {
-//     method: "DELETE",
-//     headers: {
-//       Authorization: `Bearer ${apiKey}`,
-//       "Content-Type": "application/json",
-//     },
-//   });
-
-//   return console.log(response.json());
-// };
+  return console.log(response.json());
+};

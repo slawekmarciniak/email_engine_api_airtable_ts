@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { addSubscribers } from "../../api/api";
+import { addToAirtableDb } from "../../api/apiAxios";
 import Input from "@material-ui/core/Input";
 import Paper from "@material-ui/core/Paper";
 import "./styles.css";
@@ -19,7 +20,7 @@ const AddSubscriber: FC<FormProps> = () => {
   const onSubmit = (data: object) => {
     if (!errors.name && !errors.email) {
       const todayDate = new Date().toISOString().slice(0, 10);
-      addSubscribers({ ...data, date: todayDate });
+      addToAirtableDb({ ...data, date: todayDate }, "subscriber");
       reset();
       setIsSendInfo(true);
       setTimeout(() => {

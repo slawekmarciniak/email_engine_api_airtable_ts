@@ -2,7 +2,7 @@ import { Input, Paper, TextField } from "@material-ui/core";
 import { FC, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router";
-import { addCampaign, getSubscribers } from "../../api/api";
+import { addToAirtableDb, getAirtableData } from "../../api/apiAxios";
 // import { emailMessage } from "../../mailgun/app";
 
 interface EmailProps {
@@ -30,7 +30,7 @@ const CreateCampaigne: FC<EmailProps> = ({
   useEffect(() => {
     setAllSubscribers([]);
     const getData = async () => {
-      const data = await getSubscribers();
+      const data = await getAirtableData();
       interface elementValue {
         fields: {
           name: string;
@@ -62,7 +62,10 @@ const CreateCampaigne: FC<EmailProps> = ({
     if (!errors.name && !errors.email) {
       const date = new Date().toISOString().slice(0, 10);
       const messageStatus = isSaveButton ? "draft" : "send";
-      addCampaign({ ...data, created: date, status: messageStatus });
+      addToAirtableDb(
+        { ...data, created: date, status: messageStatus },
+        "campaign"
+      );
       reset();
       setIsSendInfo(true);
       setEmailDetails("", "");
