@@ -9,7 +9,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { FC, useEffect, useState } from "react";
 // import { getSubscribers } from "../../api/api";
-import { getSubscribersAxios } from "../../api/apiAxios";
+import { getAirtableData } from "../../api/apiAxios";
 import Person from "./Person";
 import "./style.css";
 
@@ -31,7 +31,7 @@ const Subscribers: FC<SubscribersProps> = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const data = await getSubscribersAxios();
+      const data = await getAirtableData();
       setAllSubscribers(data);
       console.log(data);
       setTimeout(() => setIsDataSet(true), 500);

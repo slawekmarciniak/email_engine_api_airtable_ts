@@ -1,6 +1,7 @@
 // in progress
 
 import axios from "axios";
+import { url } from "inspector";
 
 // const {
 //   REACT_APP_DB_subscribers_ID,
@@ -19,26 +20,14 @@ const requestConfig = {
     Authorization: `Bearer ${apiKey}`,
   },
 };
-export const getSubscribersAxios = async () => {
+export const getAirtableData = async (db: string = "subscribers") => {
+  const db_url =
+    db === "subscribers" ? apiConfig.subscribers : apiConfig.campaigns;
   return axios
-    .get(apiConfig.subscribers, requestConfig)
+    .get(db_url, requestConfig)
     .then((data) => data.data.records)
     .catch((err) => console.log(err));
 };
-
-// export const getCampaigns = async () => {
-//   const response = await fetch(apiConfig.campaigns, {
-//     method: "GET",
-//     ...requestConfig,
-//   });
-//   if (!response.ok) {
-//     const message = `An error has occured: ${response.status}`;
-//     console.log(message);
-//     throw new Error(message);
-//   }
-//   const data = await response.json();
-//   return data.records;
-// };
 
 // export const addSubscribers = async (data: object) => {
 //   const response = await fetch(apiConfig.subscribers, {

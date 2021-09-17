@@ -10,7 +10,8 @@ import {
   withStyles,
 } from "@material-ui/core";
 import { FC, useEffect, useState } from "react";
-import { getCampaigns, deleteCampaign } from "../../api/api";
+import { getAirtableData } from "../../api/apiAxios";
+import { deleteCampaign } from "../../api/api";
 import CampaignRecord from "./CampaignRecord";
 
 import "./styles.css";
@@ -35,7 +36,7 @@ const Campaign: FC<CampaignProps> = ({ setEmailDetails }) => {
 
   useEffect(() => {
     const getData = async () => {
-      const data = await getCampaigns();
+      const data = await getAirtableData("campaigns");
       setAllCampaigns(data);
       setTimeout(() => setIsDataSet(true), 500);
     };
