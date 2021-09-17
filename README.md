@@ -6,7 +6,7 @@ Technologies:
 
 - [x] React, Typescript, JavaScript
 - [x] Database: airtable
-- [x] Fetch
+- [x] Fetch & Axios
 - [x] Mailgun
 - [x] Material-UI & CSS
 
