@@ -8,7 +8,8 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { FC, useEffect, useState } from "react";
-import { getSubscribers } from "../../api/api";
+// import { getSubscribers } from "../../api/api";
+import { getSubscribersAxios } from "../../api/apiAxios";
 import Person from "./Person";
 import "./style.css";
 
@@ -30,7 +31,7 @@ const Subscribers: FC<SubscribersProps> = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const data = await getSubscribers();
+      const data = await getSubscribersAxios();
       setAllSubscribers(data);
       console.log(data);
       setTimeout(() => setIsDataSet(true), 500);
