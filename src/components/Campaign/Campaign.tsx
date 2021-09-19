@@ -1,19 +1,17 @@
 import {
   CircularProgress,
-  TableContainer,
   Paper,
   Table,
-  TableHead,
-  TableRow,
   TableBody,
   TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
   withStyles,
 } from "@material-ui/core";
 import { FC, useEffect, useState } from "react";
-import { getAirtableData, deleteCampaigne } from "../../api/apiAxios";
-
+import { deleteCampaigne, getAirtableData } from "../../api/apiAxios";
 import CampaignRecord from "./CampaignRecord";
-
 import "./styles.css";
 
 const StyledTableCell = withStyles((theme) => ({

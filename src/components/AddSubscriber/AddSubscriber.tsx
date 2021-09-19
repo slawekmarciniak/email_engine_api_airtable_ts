@@ -19,7 +19,10 @@ const AddSubscriber: FC<FormProps> = () => {
   const onSubmit = (data: object) => {
     if (!errors.name && !errors.email) {
       const todayDate = new Date().toISOString().slice(0, 10);
-      addToAirtableDb({ ...data, date: todayDate }, "subscriber");
+      addToAirtableDb(
+        { ...data, date: todayDate, status: "ok" },
+        "subscribers"
+      );
       reset();
       setIsSendInfo(true);
       setTimeout(() => {

@@ -28,6 +28,8 @@ export const getAirtableData = async (db: string = "subscribers") => {
 };
 
 export const addToAirtableDb = async (data: object, db: string) => {
+  console.log(data);
+  console.log(db);
   const db_url =
     db === "subscribers" ? apiConfig.subscribers : apiConfig.campaigns;
   axios
