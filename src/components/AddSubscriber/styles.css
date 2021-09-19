@@ -32,6 +32,10 @@
     font-weight: bold;
     margin-left: 15px;
 }
+
+.formInput.button.add {
+    display: block;
+}
 .button:hover {
     background-color: #6ab04c;
     cursor: pointer;

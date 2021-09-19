@@ -61,7 +61,8 @@ const AddSubscriber: FC<FormProps> = () => {
             {errors.email && (
               <span className="errorMessage">{errors.email.message}</span>
             )}
-            <input className="formInput button" type="submit" value="send" />
+
+            <input className="formInput button add" type="submit" value="add" />
           </form>
         </Paper>
       )}
