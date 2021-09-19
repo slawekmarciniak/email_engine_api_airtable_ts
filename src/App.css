@@ -1,5 +1,4 @@
 
-
 .App {
   width: 800px;
   min-height: 100vh;
@@ -9,7 +8,6 @@
   flex-direction: column;
   background-color: #ecf0f1;
 }
-
 
 .loginContainer {
   margin-top: 50px;
@@ -22,5 +20,4 @@
   justify-content: space-around;
   height: 180px;
   width: 200px;
- 
 }
