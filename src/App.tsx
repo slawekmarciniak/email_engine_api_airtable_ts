@@ -22,7 +22,7 @@ function App() {
     setMailText(text);
   };
 
-  const handleClick = (e: any) => {
+  const handleClick = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (password === enterPassword) {
       setIsLogged(true);
@@ -36,14 +36,14 @@ function App() {
       <div className="App">
         {!isLogged && (
           <Paper className="loginContainer" elevation={3}>
-            <form className="addSub" action="onSubmit">
+            <form className="addSub" action="onSubmit" onClick={handleClick}>
               <TextField
                 value={password}
                 onChange={handleChange}
                 id="standard-basic"
                 label={`enter "admin"`}
               />
-              <Button type="submit" onClick={handleClick} variant="contained">
+              <Button type="submit" variant="contained">
                 Login
               </Button>
             </form>
