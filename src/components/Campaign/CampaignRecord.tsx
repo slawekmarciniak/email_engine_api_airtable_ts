@@ -60,14 +60,14 @@ const CampaignRecord: FC<CampaignRecordProps> = ({
       <StyledTableCell component="td">{status}</StyledTableCell>
       <StyledTableCell component="td">
         {status === "draft" ? (
-          <>
+          <div className="buttonContainer">
             <button onClick={handleEdit} className="deleteBtn">
               <EditIcon style={{ color: "#ff7979" }} />
             </button>
             <button onClick={() => handleDelete(id)} className="deleteBtn">
               <DeleteForeverIcon style={{ color: "#ff7979" }} />
             </button>
-          </>
+          </div>
         ) : (
           ""
         )}
