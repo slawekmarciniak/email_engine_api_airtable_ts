@@ -22,7 +22,8 @@ function App() {
     setMailText(text);
   };
 
-  const handleClick = () => {
+  const handleClick = (e: any) => {
+    e.preventDefault();
     if (password === enterPassword) {
       setIsLogged(true);
     } else alert("admin! :)");
@@ -35,15 +36,17 @@ function App() {
       <div className="App">
         {!isLogged && (
           <Paper className="loginContainer" elevation={3}>
-            <TextField
-              value={password}
-              onChange={handleChange}
-              id="standard-basic"
-              label={`enter "admin"`}
-            />
-            <Button onClick={handleClick} variant="contained">
-              Login
-            </Button>
+            <form className="addSub" action="onSubmit">
+              <TextField
+                value={password}
+                onChange={handleChange}
+                id="standard-basic"
+                label={`enter "admin"`}
+              />
+              <Button type="submit" onClick={handleClick} variant="contained">
+                Login
+              </Button>
+            </form>
           </Paper>
         )}
         {isLogged && (
