@@ -67,7 +67,7 @@ const Campaign: FC<CampaignProps> = ({ setEmailDetails }) => {
                   name
                 </StyledTableCell>
                 <StyledTableCell
-                  style={{ textTransform: "uppercase", width: 250 }}
+                  style={{ textTransform: "uppercase", width: 200 }}
                   align="center"
                 >
                   email
