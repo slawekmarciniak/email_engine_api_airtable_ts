@@ -36,7 +36,7 @@ function App() {
       <div className="App">
         {!isLogged && (
           <Paper className="loginContainer" elevation={3}>
-            <form className="addSub" action="onSubmit" onClick={handleClick}>
+            <form className="addSub" onSubmit={handleClick}>
               <TextField
                 value={password}
                 onChange={handleChange}
