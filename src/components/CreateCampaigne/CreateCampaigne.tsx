@@ -37,13 +37,13 @@ const CreateCampaigne: FC<EmailProps> = ({
           email: string;
         };
       }
-
       data.map((e: elementValue) => {
         return setAllSubscribers((prev) => [
           ...prev,
           { name: e.fields.name, email: e.fields.email },
         ]);
       });
+      return setEmailDetails("", "");
     };
     getData();
   }, []);
@@ -52,12 +52,20 @@ const CreateCampaigne: FC<EmailProps> = ({
     setSaveButton(true);
   };
 
+  const resetFn = () => {
+    reset();
+    setIsSendInfo(true);
+    setEmailDetails("", "");
+    setTimeout(() => {
+      setIsSendInfo(false);
+      history.push("/campaign");
+    }, 1000);
+  };
   const onSubmit = (data: object) => {
-    // Mailgun server is temporary disabled
-
     // allSubscribers.forEach((subscriber) => {
     //   emailMessage(subscriber.name, subscriber.email, data.email);
     // });
+    console.log(allSubscribers);
 
     if (!errors.name && !errors.email) {
       const date = new Date().toISOString().slice(0, 10);
@@ -66,13 +74,7 @@ const CreateCampaigne: FC<EmailProps> = ({
         { ...data, created: date, status: messageStatus },
         "campaign"
       );
-      reset();
-      setIsSendInfo(true);
-      setEmailDetails("", "");
-      setTimeout(() => {
-        setIsSendInfo(false);
-        history.push("/campaign");
-      }, 1500);
+      resetFn();
     }
   };
 

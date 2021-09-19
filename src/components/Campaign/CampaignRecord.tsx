@@ -45,11 +45,8 @@ const CampaignRecord: FC<CampaignRecordProps> = ({
   const history = useHistory();
   const { subject, email, created, status } = campaign.fields;
 
-  console.log("campaign", campaign);
-
-  const handleEdit = (id: string) => {
+  const handleEdit = () => {
     setEmailDetails(subject, email);
-    handleDelete(id);
     history.push("/email");
   };
 
@@ -64,7 +61,7 @@ const CampaignRecord: FC<CampaignRecordProps> = ({
       <StyledTableCell component="td">
         {status === "draft" ? (
           <>
-            <button onClick={() => handleEdit(id)} className="deleteBtn">
+            <button onClick={handleEdit} className="deleteBtn">
               <EditIcon style={{ color: "#ff7979" }} />
             </button>
             <button onClick={() => handleDelete(id)} className="deleteBtn">

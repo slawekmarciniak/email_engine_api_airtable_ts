@@ -17,6 +17,7 @@ const requestConfig = {
     Authorization: `Bearer ${apiKey}`,
   },
 };
+
 export const getAirtableData = async (db: string = "subscribers") => {
   const db_url =
     db === "subscribers" ? apiConfig.subscribers : apiConfig.campaigns;
